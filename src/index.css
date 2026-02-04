@@ -1,8 +1,11 @@
-:root {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text',
-    'Segoe UI', sans-serif;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-body {
-  margin: 0;
+html,
+body,
+#root {
+  height: 100%;
 }
