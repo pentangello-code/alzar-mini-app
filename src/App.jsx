@@ -1,12 +1,16 @@
 import { useState } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import cardsData from './data/cards.json'
 import './App.css'
+
 
 function App() {
   const [currentCard, setCurrentCard] = useState(null)
   const [showDetails, setShowDetails] = useState(false)
 
+
   const allCards = cardsData.cards
+
 
   const handleDrawCard = () => {
     const randomIndex = Math.floor(Math.random() * allCards.length)
@@ -15,17 +19,21 @@ function App() {
     setShowDetails(false)
   }
 
+
   const handleShowDetails = () => {
     setShowDetails(true)
   }
+
 
   const handleBack = () => {
     setShowDetails(false)
   }
 
+
   return (
     <div className="app-root">
       <div className="app-container">
+
 
         {!currentCard && (
           <div className="screen screen-start">
@@ -35,6 +43,7 @@ function App() {
             </button>
           </div>
         )}
+
 
         {currentCard && !showDetails && (
           <div className="screen screen-card">
@@ -61,6 +70,7 @@ function App() {
           </div>
         )}
 
+
         {currentCard && showDetails && (
           <div className="screen screen-details">
             <div className="details-header">
@@ -69,11 +79,13 @@ function App() {
               </button>
             </div>
 
+
             <div className="details-content">
               <div className="card-pill">
                 {currentCard.level} · {currentCard.sphere}
               </div>
               <h2 className="card-title">{currentCard.title}</h2>
+
 
               {currentCard.full_text && (
                 <div className="details-block">
@@ -82,6 +94,7 @@ function App() {
                 </div>
               )}
 
+
               {currentCard.practice && (
                 <div className="details-block">
                   <h3 className="details-subtitle">Практика</h3>
@@ -89,12 +102,14 @@ function App() {
                 </div>
               )}
 
+
               {!currentCard.full_text && !currentCard.practice && (
                 <p className="details-text muted">
                   Подробное описание этой карты пока в разработке.
                 </p>
               )}
             </div>
+
 
             <div className="card-actions bottom">
               <button className="secondary-button" onClick={handleDrawCard}>
@@ -104,9 +119,12 @@ function App() {
           </div>
         )}
 
+
       </div>
+      <Analytics />
     </div>
   )
 }
+
 
 export default App
